@@ -2,19 +2,18 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const path = require("path"); // Add path module to handle file paths
+const path = require("path"); 
 
 // Initialize dotenv
 dotenv.config();
 
-const app = express(); // Initialize the app here before using it
+const app = express(); 
 app.use(cors({
-  origin: 'http://localhost:3000', // Allow frontend to access backend from localhost:3000
+  origin: 'http://localhost:3000',
 }));
 app.use(express.json());
 
-// Serve static files (like product images) from the 'uploads' folder
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));  // Serve files in 'uploads' directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));  
 
 const PORT = process.env.PORT || 5000;
 
@@ -33,6 +32,6 @@ const productRoutes = require("./routes/products");
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 
-app.listen(PORT, () => { // Use the PORT variable here
+app.listen(PORT, () => { 
   console.log(`Server is running on port ${PORT}`);
 });
